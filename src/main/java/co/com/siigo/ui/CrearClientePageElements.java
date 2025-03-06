@@ -57,8 +57,23 @@ public class CrearClientePageElements extends PageObject {
 
     public WebElement getIngresarIdentificacionCliente(){
         WebElement txtIdentificacionCliente = (WebElement) js.executeScript(
-                "return document.querySelectorAll('siigo-textfield-web')[2].shadowRoot.querySelector('input.mdc-text-field__input');");
+                "return document.querySelector('siigo-identification-input-web').shadowRoot.querySelector('input.mdc-text-field__input');");
         return txtIdentificacionCliente;
     }
 
+    public WebElement getSeleccionarCampoCiudadCliente(){
+        WebElement txtSeleccionarCampoCiudadCliente = (WebElement) js.executeScript(
+                "return document.querySelector('siigo-autocomplete-web').shadowRoot.querySelector('#labelAutocompleteSelectItemcity');");
+        return txtSeleccionarCampoCiudadCliente;
+    }
+
+    public WebElement getIngresarCiudadCliente(){
+        WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("siigo-autocomplete-web")));
+        WebElement txtCiudadCliente = (WebElement) js.executeScript(
+                "return arguments[0].shadowRoot.querySelector('#inputAutocompletecity');", shadowHost);
+        js.executeScript("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", txtCiudadCliente);
+        /*WebElement txtCiudadCliente = (WebElement) js.executeScript(
+                "return document.querySelector('siigo-autocomplete-web').shadowRoot.querySelector('#inputAutocompletecity');");*/
+        return txtCiudadCliente;
+    }
 }

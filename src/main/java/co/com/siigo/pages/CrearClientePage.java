@@ -32,9 +32,18 @@ public class CrearClientePage extends PageObject {
     }
 
     public void ingresarIdentificacionCliente(String identificacionCliente) {
+        WebElement txtIdentificacionCliente = crearClientePageElements.getIngresarIdentificacionCliente();
+        txtIdentificacionCliente.sendKeys(identificacionCliente);
+        waitFor(2).seconds();
     }
 
     public void ingresarCiudadCliente(String ciudadCliente) {
+        WebElement txtSeleccionarCampoCiudadCliente = crearClientePageElements.getSeleccionarCampoCiudadCliente();
+        WebElement txtCiudadCliente = crearClientePageElements.getIngresarCiudadCliente();
+        txtSeleccionarCampoCiudadCliente.click();
+        waitFor(5).seconds();
+        txtCiudadCliente.sendKeys(ciudadCliente);
+        waitFor(5).seconds();
     }
 
     public void ingresarNombreContactoCliente(String nombreContactoCliente) {
