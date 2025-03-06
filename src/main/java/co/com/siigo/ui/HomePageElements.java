@@ -10,13 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class HomePageElements extends PageObject{
+public class HomePageElements extends PageObject {
 
     private WebDriver driver;
     private WebDriverWait wait;
 
     public HomePageElements(WebDriver driver) {
-        super(driver);
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
@@ -31,13 +30,23 @@ public class HomePageElements extends PageObject{
         return shadowRoot2.findElement(By.cssSelector("button.btn-element"));
     }
 
-    public WebElement getOpcionCliente() {
-        WebElement shadowHost1 = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("siigo-header-molecule")));
+    public void getOpcionCliente() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Acceder al Shadow DOM del siigo-header-molecule
+        WebElement shadowHost1 = driver.findElement(By.cssSelector("siigo-header-molecule"));
         SearchContext shadowRoot1 = shadowHost1.getShadowRoot();
 
-        // Aquí está el menú desplegable, NO está dentro del mismo shadowRoot2 del botón
-        WebElement menuDesplegable = shadowRoot1.findElement(By.cssSelector("siigo-header-create-button-dropdown"));
+        // Acceder al Shadow DOM del botón "Crear"
+        WebElement shadowHost2 = shadowRoot1.findElement(By.cssSelector("siigo-header-create-button-dropdown"));
 
-        return menuDesplegable.findElement(By.cssSelector("div.titles-create[data-value='Clientes']"));
+        // Seleccionar el enlace "Clientes" dentro del dropdown (SIN otro shadowRoot)
+        WebElement opcionCliente = shadowHost2.findElement(By.cssSelector("a[data-value='Clientes']"));
+
+        // Desplazar hasta el elemento si es necesario
+        js.executeScript("arguments[0].scrollIntoView(true);", opcionCliente);
+
+        // Forzar el clic con JavaScript para evitar bloqueos
+        js.executeScript("arguments[0].click();", opcionCliente);
     }
 }

@@ -1,7 +1,6 @@
 package co.com.siigo.pages;
 
 import co.com.siigo.ui.LoginPageElements;
-import net.serenitybdd.core.pages.PageObject;
 import org.junit.Assert;
 import org.openqa.selenium.NoSuchElementException;
 

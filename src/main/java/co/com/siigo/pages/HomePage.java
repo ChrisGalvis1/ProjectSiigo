@@ -10,17 +10,13 @@ public class HomePage extends PageObject {
     HomePageElements homePageElements;
 
     public HomePage(WebDriver driver) {
-        super(driver);
-        this.homePageElements = new HomePageElements(driver);
+        this.homePageElements = new HomePageElements(getDriver());
     }
 
     public void ingresarModuloCrearCliente() {
         waitFor(5).seconds();
         WebElement btnCrear = homePageElements.getBotonCrear();
         btnCrear.click();
-        waitFor(4).seconds();
-        WebElement btnCliente = homePageElements.getOpcionCliente();
-        btnCliente.click();
-        waitFor(4).seconds();
+        homePageElements.getOpcionCliente();
     }
 }
