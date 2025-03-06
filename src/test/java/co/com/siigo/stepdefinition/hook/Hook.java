@@ -3,9 +3,6 @@ package co.com.siigo.stepdefinition.hook;
 import co.com.siigo.pages.LoginPage;
 import co.com.siigo.utils.LoginConfig;
 import io.cucumber.java.en.Given;
-import net.serenitybdd.core.Serenity;
-
-import static co.com.siigo.utils.LoginConfig.*;
 
 public class Hook {
 

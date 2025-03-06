@@ -55,4 +55,10 @@ public class CrearClientePageElements extends PageObject {
         return txtApellidoCliente;
     }
 
+    public WebElement getIngresarIdentificacionCliente(){
+        WebElement txtIdentificacionCliente = (WebElement) js.executeScript(
+                "return document.querySelectorAll('siigo-textfield-web')[2].shadowRoot.querySelector('input.mdc-text-field__input');");
+        return txtIdentificacionCliente;
+    }
+
 }
