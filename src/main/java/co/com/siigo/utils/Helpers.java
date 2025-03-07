@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Helpers {
 
-    public int generarNumeroAleatorio() {
+    public static int generarNumeroAleatorio() {
         Random randomNumber = new Random();
         return randomNumber.nextInt(9000) + 1000;
     }

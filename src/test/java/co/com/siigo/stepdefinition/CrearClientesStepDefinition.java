@@ -2,6 +2,7 @@ package co.com.siigo.stepdefinition;
 
 import co.com.siigo.pages.CrearClientePage;
 import co.com.siigo.pages.HomePage;
+import co.com.siigo.pages.PerfilTerceroPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -12,6 +13,7 @@ public class CrearClientesStepDefinition {
 
     HomePage homePage;
     CrearClientePage crearClientePage;
+    PerfilTerceroPage perfilTerceroPage;
 
     @When("ingresa al modulo de crear clientes")
     public void ingresaAlModuloDeCrearClientes() {
@@ -40,7 +42,8 @@ public class CrearClientesStepDefinition {
     @Then("validar la creacion del cliente")
     public void validarLaCreacionDelCliente() {
         crearClientePage.guardarClienteNuevo();
-        crearClientePage.validarClienteCreado();
+        perfilTerceroPage.validarClienteCreado();
+        perfilTerceroPage.validarCamposDiligenciados();
     }
 
     @Then("identificar tecnica utilizada {string}")

@@ -65,13 +65,13 @@ public class CrearClientePageElements extends PageObject {
         WebElement autocompleteWeb = wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.cssSelector("siigo-autocomplete-web")));
 
-        WebElement firstCityOption = (WebElement) ((JavascriptExecutor) driver).executeScript(
+        WebElement seleccionarCiudad = (WebElement) ((JavascriptExecutor) driver).executeScript(
                 "let dropdown = document.querySelector('siigo-autocomplete-web').shadowRoot;" +
                         "let rows = dropdown.querySelectorAll('#tableAutocompletecity tbody tr');" +
                         "return rows.length > 0 ? rows[0].querySelector('td') : null;");
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", firstCityOption);
-        firstCityOption.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", seleccionarCiudad);
+        seleccionarCiudad.click();
     }
 
     public void getSeleccionarMenuContacto() {

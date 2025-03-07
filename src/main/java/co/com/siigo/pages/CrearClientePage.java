@@ -11,15 +11,22 @@ public class CrearClientePage extends PageObject {
     CrearClientePageElements crearClientePageElements;
     SelectorElements selectorElements;
     Helpers helpers;
-    int numeroAleatorio;
+    private int numeroAleatorio;
+    private String tipoCliente;
+    private String nombreCliente;
+    private String apellidoCliente;
+    private String identificacionCliente;
+    private String ciudadCliente;
 
     public CrearClientePage() {
         this.crearClientePageElements = new CrearClientePageElements(getDriver());
+        selectorElements = new SelectorElements(getDriver());
     }
 
     public void seleccionarTipoCliente(String tipoCliente) {
         waitFor(3).seconds();
         crearClientePageElements.getSeleccionarTipoPersona();
+        this.tipoCliente = tipoCliente;
         waitFor(5).seconds();
     }
 
@@ -27,12 +34,14 @@ public class CrearClientePage extends PageObject {
         waitFor(7).seconds();
         WebElement txtNombreCliente = crearClientePageElements.getIngresarNombreCliente();
         txtNombreCliente.sendKeys(nombreCliente);
+        this.nombreCliente = nombreCliente;
         waitFor(1).seconds();
     }
 
     public void ingresarApellidoCliente(String apellidoCliente) {
         WebElement txtApellidoCliente = crearClientePageElements.getIngresarApellidoCliente();
         txtApellidoCliente.sendKeys(apellidoCliente);
+        this.apellidoCliente = apellidoCliente;
         waitFor(1).seconds();
     }
 
@@ -40,7 +49,9 @@ public class CrearClientePage extends PageObject {
         WebElement txtIdentificacionCliente = crearClientePageElements.getIngresarIdentificacionCliente();
         numeroAleatorio = helpers.generarNumeroAleatorio();
         String capuraNumeroAleatorio = String.valueOf(numeroAleatorio);
-        txtIdentificacionCliente.sendKeys(identificacionCliente+capuraNumeroAleatorio);
+        String numeroConcatenadoIdentificacion = identificacionCliente+capuraNumeroAleatorio;
+        txtIdentificacionCliente.sendKeys(numeroConcatenadoIdentificacion);
+        this.identificacionCliente = numeroConcatenadoIdentificacion;
         waitFor(1).seconds();
     }
 
@@ -51,6 +62,7 @@ public class CrearClientePage extends PageObject {
         crearClientePageElements.getIngresarCiudadCliente(ciudadCliente);
         waitFor(5).seconds();
         crearClientePageElements.getSeleccionarCiudadRetornada();
+        this.ciudadCliente = ciudadCliente;
         waitFor(1).seconds();
     }
 
@@ -67,6 +79,24 @@ public class CrearClientePage extends PageObject {
         waitFor(5).seconds();
     }
 
-    public void validarClienteCreado() {
+    public String getTipoCliente() {
+        return tipoCliente;
     }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public String getApellidoCliente() {
+        return apellidoCliente;
+    }
+
+    public String getIdentifacionCliente() {
+        return identificacionCliente;
+    }
+
+    public String getCiudadCliente() {
+        return ciudadCliente;
+    }
+
 }
