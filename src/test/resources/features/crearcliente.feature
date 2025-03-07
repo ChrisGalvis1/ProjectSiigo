@@ -16,12 +16,12 @@ Feature: Realizar registro de cliente nuevo
     And identificar tecnica utilizada "<Tecnica>"
 
     Examples:
-      | Tipo    | Nombre | Apellido | Identificacion | Ciudad | NombreContacto | Tecnica                       |
-      | Persona | Chris  | Galvis   | 98765          | Bogota | QAPrueba       | Particion equivalencia valida |
-      #| Empresa | ChrisQA |          | 12345      | Bogota | QAPrueba       | Particion equivalencia valida   |
-      #| Persona |         | Galvis   | 98765      | Bogota | QAPrueba       | Particion equivalencia invalida |
-      #| Persona | Chris   |          | 98765      | Bogota | QAPrueba       | Particion equivalencia invalida |
-      #| Persona | Chris   | Galvis   | QA1234          | Bogota | QAPrueba       | Tabla decision invalida         |
-      #| Empresa | Chris   |          | QA1234QATEST    | Bogota | QAPrueba       | Tabla decision valida           |
-      #| Persona | Chris   | Galvis   | 12              | Bogota | QAPrueba       | Valores limite invalida         |
-      #| Persona | Chris   | Galvis   | 987654321012345 | Bogota | QAPrueba       | valores limite invalida         |
+      | Tipo       | Nombre | Apellido | Identificacion | Ciudad | NombreContacto | Tecnica                       |
+      | Es persona | Chris  | Galvis   | 98765          | Bogotá | QAPrueba       | Particion equivalencia valida |
+      | Es empresa | ChrisQA |          | 12345      | Bogota | QAPrueba       | Particion equivalencia valida   |
+      | Persona |         | Galvis   | 98765      | Bogota | QAPrueba       | Particion equivalencia invalida |
+      | Persona | Chris   |          | 98765      | Bogota | QAPrueba       | Particion equivalencia invalida |
+      | Persona | Chris   | Galvis   | QA1234          | Bogota | QAPrueba       | Tabla decision invalida         |
+      | Empresa | Chris   |          | QA1234QATEST    | Bogota | QAPrueba       | Tabla decision valida           |
+      | Persona | Chris   | Galvis   | 12              | Bogota | QAPrueba       | Valores limite invalida         |
+      | Persona | Chris   | Galvis   | 987654321012345 | Bogota | QAPrueba       | valores limite invalida         |
