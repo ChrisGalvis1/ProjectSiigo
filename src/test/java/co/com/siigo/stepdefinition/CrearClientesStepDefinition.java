@@ -5,14 +5,20 @@ import co.com.siigo.pages.HomePage;
 import co.com.siigo.pages.PerfilTerceroPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.thucydides.core.annotations.Steps;
 
 import java.util.List;
 import java.util.Map;
 
 public class CrearClientesStepDefinition {
 
+    @Steps
     HomePage homePage;
+
+    @Steps
     CrearClientePage crearClientePage;
+
+    @Steps
     PerfilTerceroPage perfilTerceroPage;
 
     @When("ingresa al modulo de crear clientes")
@@ -42,6 +48,7 @@ public class CrearClientesStepDefinition {
     @Then("validar la creacion del cliente")
     public void validarLaCreacionDelCliente() {
         crearClientePage.guardarClienteNuevo();
+        perfilTerceroPage.setCrearClientePage(crearClientePage);
         perfilTerceroPage.validarClienteCreado();
         perfilTerceroPage.validarCamposDiligenciados();
     }

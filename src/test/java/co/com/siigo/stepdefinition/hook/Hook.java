@@ -3,10 +3,13 @@ package co.com.siigo.stepdefinition.hook;
 import co.com.siigo.pages.LoginPage;
 import co.com.siigo.utils.LoginConfig;
 import io.cucumber.java.en.Given;
+import net.thucydides.core.annotations.Steps;
 
 public class Hook {
 
+    @Steps
     LoginPage loginPage;
+
     LoginConfig loginConfig;
 
     @Given("abre la plataforma de Siigo")

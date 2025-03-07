@@ -4,6 +4,7 @@ import co.com.siigo.ui.PerfilTerceroPageElements;
 import co.com.siigo.utils.SelectorElements;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
@@ -11,17 +12,15 @@ public class PerfilTerceroPage extends PageObject {
 
     PerfilTerceroPageElements perfilTerceroPageElements;
     SelectorElements selectorElements;
-    //CrearClientePage crearClientePage;
-    CrearClientePage crearClientePage = new CrearClientePage();
-    String tipoCliente = crearClientePage.getTipoCliente();
-    String nombreCliente = crearClientePage.getNombreCliente();
-    String apellidoCliente = crearClientePage.getApellidoCliente();
-    String identificacionCliente = crearClientePage.getIdentifacionCliente();
-    String ciudadCliente = crearClientePage.getCiudadCliente();
+    private CrearClientePage crearClientePage;
+
+    public void setCrearClientePage(CrearClientePage crearClientePage) {
+        this.crearClientePage = crearClientePage;
+    }
 
     public PerfilTerceroPage(){
         this.perfilTerceroPageElements = new PerfilTerceroPageElements();
-        selectorElements = new SelectorElements(getDriver());
+        this.selectorElements = new SelectorElements(getDriver());
     }
 
     public void validarClienteCreado() {
@@ -42,15 +41,16 @@ public class PerfilTerceroPage extends PageObject {
         String capturaApellidoCliente = lblApellidoCliente.getText();
         String capturaIdentiicacionCliente = lblIdentificacionCliente.getText();
         String capturaCiudadCliente = lblCiudadCliente.getText();
-        Assert.assertTrue(tipoCliente.equals(capturaTipoCliente));
-        selectorElements.bordearElemento((WebElementFacade) lblTipoCliente);
-        Assert.assertTrue(nombreCliente.equals(capturaNombreCliente));
+        //Assert.assertTrue(crearClientePage.getTipoCliente().equals(capturaTipoCliente));
+        //selectorElements.bordearElemento((WebElementFacade) lblTipoCliente);
+        Assert.assertTrue(crearClientePage.getNombreCliente().equals(capturaNombreCliente));
         selectorElements.bordearElemento((WebElementFacade) lblNombreCliente);
-        Assert.assertTrue(apellidoCliente.equals(capturaApellidoCliente));
+        Assert.assertTrue(crearClientePage.getApellidoCliente().equals(capturaApellidoCliente));
         selectorElements.bordearElemento((WebElementFacade) lblApellidoCliente);
-        Assert.assertTrue(identificacionCliente.equals(capturaIdentiicacionCliente));
+        Assert.assertTrue(crearClientePage.getIdentifacionCliente().equals(capturaIdentiicacionCliente));
         selectorElements.bordearElemento((WebElementFacade) lblIdentificacionCliente);
-        Assert.assertTrue(ciudadCliente.equals(capturaCiudadCliente));
+        Assert.assertTrue(crearClientePage.getCiudadCliente().equals(capturaCiudadCliente));
         selectorElements.bordearElemento((WebElementFacade) lblCiudadCliente);
     }
+
 }

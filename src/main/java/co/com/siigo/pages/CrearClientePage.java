@@ -19,14 +19,13 @@ public class CrearClientePage extends PageObject {
     private String ciudadCliente;
 
     public CrearClientePage() {
-        this.crearClientePageElements = new CrearClientePageElements(getDriver());
-        selectorElements = new SelectorElements(getDriver());
+
     }
 
     public void seleccionarTipoCliente(String tipoCliente) {
         waitFor(3).seconds();
-        crearClientePageElements.getSeleccionarTipoPersona();
         this.tipoCliente = tipoCliente;
+        crearClientePageElements.getSeleccionarTipoPersona();
         waitFor(5).seconds();
     }
 
@@ -49,7 +48,7 @@ public class CrearClientePage extends PageObject {
         WebElement txtIdentificacionCliente = crearClientePageElements.getIngresarIdentificacionCliente();
         numeroAleatorio = helpers.generarNumeroAleatorio();
         String capuraNumeroAleatorio = String.valueOf(numeroAleatorio);
-        String numeroConcatenadoIdentificacion = identificacionCliente+capuraNumeroAleatorio;
+        String numeroConcatenadoIdentificacion = identificacionCliente + capuraNumeroAleatorio;
         txtIdentificacionCliente.sendKeys(numeroConcatenadoIdentificacion);
         this.identificacionCliente = numeroConcatenadoIdentificacion;
         waitFor(1).seconds();

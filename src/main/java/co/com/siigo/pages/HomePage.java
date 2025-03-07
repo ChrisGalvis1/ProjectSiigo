@@ -9,8 +9,8 @@ public class HomePage extends PageObject {
 
     HomePageElements homePageElements;
 
-    public HomePage(WebDriver driver) {
-        this.homePageElements = new HomePageElements(getDriver());
+    public HomePage() {
+
     }
 
     public void ingresarModuloCrearCliente() {
