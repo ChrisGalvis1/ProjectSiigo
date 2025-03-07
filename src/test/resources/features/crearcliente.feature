@@ -16,11 +16,11 @@ Feature: Realizar registro de cliente nuevo
     And identificar tecnica utilizada "<Tecnica>"
 
     Examples:
-      | Tipo    | Nombre  | Apellido | Identificacion  | Ciudad | NombreContacto | Tecnica                         |
-      | Persona | Chris   | Galvis   | 9876543210      | Bogota | QAPrueba       | Particion equivalencia valida   |
-      #| Empresa | ChrisQA |          | 1234567890      | Bogota | QAPrueba       | Particion equivalencia valida   |
-      #| Persona |         | Galvis   | 9876543210      | Bogota | QAPrueba       | Particion equivalencia invalida |
-      #| Persona | Chris   |          | 9876543210      | Bogota | QAPrueba       | Particion equivalencia invalida |
+      | Tipo    | Nombre | Apellido | Identificacion | Ciudad | NombreContacto | Tecnica                       |
+      | Persona | Chris  | Galvis   | 98765          | Bogota | QAPrueba       | Particion equivalencia valida |
+      #| Empresa | ChrisQA |          | 12345      | Bogota | QAPrueba       | Particion equivalencia valida   |
+      #| Persona |         | Galvis   | 98765      | Bogota | QAPrueba       | Particion equivalencia invalida |
+      #| Persona | Chris   |          | 98765      | Bogota | QAPrueba       | Particion equivalencia invalida |
       #| Persona | Chris   | Galvis   | QA1234          | Bogota | QAPrueba       | Tabla decision invalida         |
       #| Empresa | Chris   |          | QA1234QATEST    | Bogota | QAPrueba       | Tabla decision valida           |
       #| Persona | Chris   | Galvis   | 12              | Bogota | QAPrueba       | Valores limite invalida         |

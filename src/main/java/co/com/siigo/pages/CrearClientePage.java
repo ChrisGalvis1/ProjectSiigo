@@ -1,16 +1,17 @@
 package co.com.siigo.pages;
 
 import co.com.siigo.ui.CrearClientePageElements;
+import co.com.siigo.utils.Helpers;
 import co.com.siigo.utils.SelectorElements;
 import net.serenitybdd.core.pages.PageObject;
-import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.WebElement;
-import co.com.siigo.ui.CrearClientePageElements;
 
 public class CrearClientePage extends PageObject {
 
     CrearClientePageElements crearClientePageElements;
     SelectorElements selectorElements;
+    Helpers helpers;
+    int numeroAleatorio;
 
     public CrearClientePage() {
         this.crearClientePageElements = new CrearClientePageElements(getDriver());
@@ -37,7 +38,9 @@ public class CrearClientePage extends PageObject {
 
     public void ingresarIdentificacionCliente(String identificacionCliente) {
         WebElement txtIdentificacionCliente = crearClientePageElements.getIngresarIdentificacionCliente();
-        txtIdentificacionCliente.sendKeys(identificacionCliente);
+        numeroAleatorio = helpers.generarNumeroAleatorio();
+        String capuraNumeroAleatorio = String.valueOf(numeroAleatorio);
+        txtIdentificacionCliente.sendKeys(identificacionCliente+capuraNumeroAleatorio);
         waitFor(1).seconds();
     }
 
