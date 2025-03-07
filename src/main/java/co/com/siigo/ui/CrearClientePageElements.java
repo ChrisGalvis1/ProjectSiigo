@@ -1,12 +1,15 @@
 package co.com.siigo.ui;
 
+import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class CrearClientePageElements extends PageObject {
 
@@ -22,58 +25,70 @@ public class CrearClientePageElements extends PageObject {
     }
 
     public void getSeleccionarTipoPersona() {
-        // Accede al Shadow DOM del dropdown
-        WebElement shadowHost = getDriver().findElement(By.tagName("siigo-dropdownlist-web"));
-        SearchContext shadowRoot = shadowHost.getShadowRoot();
-
-        // Ubica el elemento que abre el dropdown
-        WebElement dropdown = shadowRoot.findElement(By.cssSelector("div.mdc-select__anchor"));
-
-        // Hacer scroll hasta el elemento
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", dropdown);
-
-        // Intentar hacer clic con JavaScript
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", dropdown);
-
-        // Verificar si el dropdown se abrió correctamente
-        boolean isDropdownOpen = dropdown.getAttribute("aria-expanded").equals("true");
-        if (!isDropdownOpen) {
-            System.out.println("⚠️ El dropdown NO se abrió, intentando nuevamente...");
-            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", dropdown);
-        }
     }
 
-    public WebElement getIngresarNombreCliente(){
+    public WebElement getIngresarNombreCliente() {
         WebElement txtNombreCliente = (WebElement) js.executeScript(
                 "return document.querySelectorAll('siigo-textfield-web')[1].shadowRoot.querySelector('input.mdc-text-field__input');");
         return txtNombreCliente;
     }
 
-    public WebElement getIngresarApellidoCliente(){
+    public WebElement getIngresarApellidoCliente() {
         WebElement txtApellidoCliente = (WebElement) js.executeScript(
                 "return document.querySelectorAll('siigo-textfield-web')[2].shadowRoot.querySelector('input.mdc-text-field__input');");
         return txtApellidoCliente;
     }
 
-    public WebElement getIngresarIdentificacionCliente(){
+    public WebElement getIngresarIdentificacionCliente() {
         WebElement txtIdentificacionCliente = (WebElement) js.executeScript(
                 "return document.querySelector('siigo-identification-input-web').shadowRoot.querySelector('input.mdc-text-field__input');");
         return txtIdentificacionCliente;
     }
 
-    public WebElement getSeleccionarCampoCiudadCliente(){
+    public WebElement getSeleccionarCampoCiudadCliente() {
         WebElement txtSeleccionarCampoCiudadCliente = (WebElement) js.executeScript(
                 "return document.querySelector('siigo-autocomplete-web').shadowRoot.querySelector('#labelAutocompleteSelectItemcity');");
         return txtSeleccionarCampoCiudadCliente;
     }
 
-    public WebElement getIngresarCiudadCliente(){
-        WebElement shadowHost = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("siigo-autocomplete-web")));
+    public void getIngresarCiudadCliente(String CiudadCliente) {
         WebElement txtCiudadCliente = (WebElement) js.executeScript(
-                "return arguments[0].shadowRoot.querySelector('#inputAutocompletecity');", shadowHost);
-        js.executeScript("arguments[0].dispatchEvent(new Event('input', { bubbles: true }));", txtCiudadCliente);
-        /*WebElement txtCiudadCliente = (WebElement) js.executeScript(
-                "return document.querySelector('siigo-autocomplete-web').shadowRoot.querySelector('#inputAutocompletecity');");*/
-        return txtCiudadCliente;
+                "return document.querySelector('siigo-autocomplete-web').shadowRoot.querySelector('input.mdc-text-field__input');");
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", txtCiudadCliente);
+        txtCiudadCliente.click();
+        txtCiudadCliente.sendKeys(CiudadCliente);
+        wait.until(driver -> (Boolean) js.executeScript(
+                "return document.querySelector('siigo-autocomplete-web').shadowRoot.querySelector('#tableAutocompletecity tbody tr') !== null;"));
+    }
+
+    public void getSeleccionarCiudadRetornada() {
+        WebElement autocompleteWeb = wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("siigo-autocomplete-web")));
+
+        WebElement firstCityOption = (WebElement) ((JavascriptExecutor) driver).executeScript(
+                "let dropdown = document.querySelector('siigo-autocomplete-web').shadowRoot;" +
+                        "let rows = dropdown.querySelectorAll('#tableAutocompletecity tbody tr');" +
+                        "return rows.length > 0 ? rows[0].querySelector('td') : null;");
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", firstCityOption);
+        firstCityOption.click();
+    }
+
+    public void getSeleccionarMenuContacto() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement btnContactos = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.collapsible.closed.card.clickable")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", btnContactos);
+        wait.until(ExpectedConditions.elementToBeClickable(btnContactos)).click();
+    }
+
+    public WebElement getIngresarNombreContacto() {
+        WebElement txtContactoCliente = (WebElement) js.executeScript(
+                "return document.querySelectorAll('siigo-textfield-web')[12].shadowRoot.querySelector('input.mdc-text-field__input');");
+        return txtContactoCliente;
+    }
+
+    public void getBotonGuardar() {
+        WebElement btnGuardar = driver.findElement(By.xpath("//button[contains(text(),'Guardar')]"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btnGuardar);
     }
 }

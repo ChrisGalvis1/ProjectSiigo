@@ -39,6 +39,8 @@ public class CrearClientesStepDefinition {
 
     @Then("validar la creacion del cliente")
     public void validarLaCreacionDelCliente() {
+        crearClientePage.guardarClienteNuevo();
+        crearClientePage.validarClienteCreado();
     }
 
     @Then("identificar tecnica utilizada {string}")
